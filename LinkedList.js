@@ -66,6 +66,7 @@ class linkedList {
         if(index < 0 || index > this.size){
             return null
         }
+        
         let removedNode
         if(index === 0){
             removedNode = this.head
@@ -106,6 +107,65 @@ class linkedList {
         }
     }
 
+    search(value){
+        if(this.isEmpty()){
+            return -1
+        }
+        let i=0
+        let prev = this.head
+        while(prev){
+            if(prev.value === value){
+                return i
+            }
+            prev = prev.next
+            i++
+        }
+        return -1
+    }
+
+    reverse(){
+        let prev = null
+        let curr = this.head
+        while(curr){
+            let next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
+        }
+        this.head = prev
+    }
+    
+    middle() {
+        let slow = this.head;
+        let fast = this.head;
+        while (fast && fast.next) {
+          fast = fast.next.next;
+          slow = slow.next;
+        }
+        return slow.value;
+      }
+      
+    //   removeMiddle(){
+    //     if(this.isEmpty()){
+    //         return "list is empty"
+    //     }
+    //     if(this.size === 1){
+    //         this.head = null
+    //         this.size--
+    //         return "removed the element"
+    //     }
+    //         let slow = this.head
+    //         let fast = this.head
+    //         let pre = null
+    //         while(fast != null && fast.next != null){
+    //             pre = slow
+    //             slow = slow.next
+    //             fast = fast.next.next
+    //         }
+    //         pre.next = slow.next
+    //         this.size--
+    //   }
+
     print(){
         if(this.isEmpty()){
             console.log("List is Empty");
@@ -128,16 +188,21 @@ console.log("List size", list.getSize());
 
 
 list.insert(20,0)
-list.print()
 
 list.insert(40,0)
-list.print()
 
 list.insert(60,0)
-list.print()
 
 list.insert(100,1)
+list.insert(500,2)
+list.insert(20,0)
+list.insert(20,0)
+console.log(list.reverse());
+
+
+
+
+console.log(list.middle());
+
 list.print()
 
-console.log(list.removeValue(100))
-list.print()

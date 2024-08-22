@@ -87,3 +87,92 @@
 // console.log(binarysearch([-12,2,4,12,45,50],45))
 // console.log(binarysearch([-12,2,4,12,45,50],50))
 // console.log(binarysearch([-12,2,4,12,45,50],100))
+
+
+
+
+
+
+// binary serach
+
+// function binary(arr,target){
+//     let leftIndex = 0
+//     let rightIndex = arr.length-1
+
+//     while(leftIndex <= rightIndex){
+//         let middleIndex = Math.floor((leftIndex + rightIndex)/2)
+//         if(target === arr[middleIndex]){
+//             return middleIndex
+//         }
+//         if(target > arr[middleIndex]){
+//             leftIndex = middleIndex +1
+//         }else{
+//             rightIndex = middleIndex - 1
+//         }
+//     }
+// }
+
+// console.log(binary([2,4,6,8,10],8))
+
+
+// linke list
+
+class Node {
+    constructor(value){
+        this.value = value
+        this.next = null
+    }
+}
+
+class linkedList {
+    constructor(){
+        this.head = null
+        this.size = 0
+    }
+
+    isEmpty(){
+       return this.size === 0
+    }
+
+    getSize(){
+        return this.size
+    }
+
+    insert(value){
+        let node = new Node(value)
+        if(this.isEmpty()){
+            this.head = node
+            this.size++
+        }else{
+            let prev = this.head
+            while(prev.next){
+                prev = prev.next
+        }
+        prev.next = node
+        this.size++
+    }
+    }
+
+    print(){
+        if(this.isEmpty()){
+            console.log("li")
+        }else{
+            let curr = this.head
+            let listValue = ""
+            while(curr){
+                listValue += `${curr.value} `
+                curr = curr.next
+            }
+            console.log("Listed values",listValue)
+        }
+    }
+}
+
+const list = new linkedList()
+console.log("List is  empty",list.isEmpty())
+console.log("List Size",list.getSize())
+
+list.insert(50)
+list.insert(500)
+list.insert(250)
+list.print()
