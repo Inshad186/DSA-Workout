@@ -1,52 +1,94 @@
-class Stack {
-    constructor(){
-        this.items = []
-    }
+//////////////!   Stack-Using-Array   //////////////!
 
-    isEmpty(){
-        return this.items.length === 0 
-    }
+// class Stack {
+//     constructor(){
+//         this.items = []
+//     }
 
-    getSize(){
-        return this.items.length
-    }
+//     isEmpty(){
+//         return this.items.length === 0 
+//     }
 
-    push(value){
-        this.items.push(value)
-    }
+//     getSize(){
+//         return this.items.length
+//     }
 
-    pop(){
-        if(this.isEmpty()){
-            return 'stack  is empty'
-        }
-        return this.items.pop()
-    }
+//     push(value){
+//         this.items.push(value)
+//     }
 
-    peek(){
-        if (this.items.length < 1) {
-            return 'Stack is Empty'
-        }
-        return this.items[this.items.length-1]
-    }
+//     pop(){
+//         if(this.isEmpty()){
+//             return 'stack  is empty'
+//         }
+//         return this.items.pop()
+//     }
 
-    clear(){
-        this.items = [];
-    }
+//     peek(){
+//         if (this.items.length < 1) {
+//             return 'Stack is Empty'
+//         }
+//         return this.items[this.items.length-1]
+//     }
 
-    print(){
-        if (this.isEmpty()) {
-            return ' stack is empty'
-        }
-        return this.items.join(',')
-    }
-}
+//     clear(){
+//         this.items = [];
+//     }
 
-const stack = new Stack();
+//     print(){
+//         if (this.isEmpty()) {
+//             return ' stack is empty'
+//         }
+//         return this.items.join(',')
+//     }
+// }
 
-stack.push(1);
-stack.push(2);
-stack.push(3);
+// const stack = new Stack();
 
-console.log(stack.size()); 
-// console.log(stack.pop()); 
-console.log(stack.print()); 
+// stack.push(1);
+// stack.push(2);
+// stack.push(3);
+// console.log(stack.peek())
+// // stack.pop()
+// console.log(stack.print()); 
+
+
+
+//////////////!   Stack-Using-Reverse   //////////////!
+
+// class Stack {
+//     constructor(){
+//         this.items = []
+//     }
+
+//     isEmpty(){
+//         return this.items.length === 0 
+//     }
+
+//     push(value){
+//         this.items.push(value)
+//     }
+
+//     pop(){
+//         if(this.isEmpty()){
+//             return null; 
+//         }
+//         return this.items.pop()
+//     }
+// }
+
+// function reverseString(str){
+//     let stack = new Stack()
+//     for(let char of str){
+//         stack.push(char)
+//     }
+
+//     let reverseStr = ""
+//     while(!stack.isEmpty()){  
+//         reverseStr += stack.pop()
+//     }
+//     return reverseStr
+// }
+
+// const str = "mayavi"
+// console.log(reverseString(str))

@@ -18,8 +18,9 @@
 //             sortValue.push(rightArr.shift())
 //         }
 //     }
-//     return [...sortValue, ...leftArr, ...rightArr]
+//     return [...sortValue,...leftArr,...rightArr]
 // }
 
 // const arr = [5,10,-3,50,-8,20]
 // console.log(Merge(arr))
+

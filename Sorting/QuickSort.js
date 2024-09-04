@@ -17,5 +17,7 @@
 //     return [...Quick(left),pivot,...Quick(right)]
 // }
 
-// const arr = [5,10,-3,50,-8,20]
+// const arr = [5,10,-3,50,-8,-100]
 // console.log(Quick(arr));
+
+
