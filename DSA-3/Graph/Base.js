@@ -20,7 +20,7 @@
 
 //! Adjacency List Implementation
 
-class Graph {
+class Graph {   
     constructor(){
         this.adjacencyList = {}
     }

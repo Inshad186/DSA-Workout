@@ -207,36 +207,153 @@
 
 ////////////!   Heap-Sort   ////////////!
 
-function heapSort(array){
-    let length = array.length
-    for(let i=Math.floor(length/2)-1 ; i>=0 ; i--){
-        heapify(array , length , i)
+// function heapSort(array) { 
+//     const length = array.length;
+
+//     for (let i = Math.floor(length / 2) - 1; i >= 0; i--) {
+//         heapify(array, length, i);
+//     }
+
+//     for (let i = length - 1; i >= 0; i--) {
+//         [array[0], array[i]] = [array[i], array[0]]; 
+//         heapify(array, i, 0);
+//     }
+
+//     return array;
+// }
+
+// function heapify(array, heapSize, rootIndex) {
+//     let largest = rootIndex;
+//     const leftChild = 2 * rootIndex + 1;
+//     const rightChild = 2 * rootIndex + 2;
+
+//     if (leftChild < heapSize && array[leftChild] > array[largest]) {
+//         largest = leftChild;
+//     }
+
+//     if (rightChild < heapSize && array[rightChild] > array[largest]) {
+//         largest = rightChild;
+//     }
+
+//     if (largest !== rootIndex) {
+//         [array[rootIndex], array[largest]] = [array[largest], array[rootIndex]];
+//         heapify(array, heapSize, largest);
+//     }
+// }
+
+// const arr = [5, 47, 23, 6, 4, 8];      
+// console.log(heapSort(arr));
+
+
+////////////!   Trie   ////////////!
+
+// class TrieNode {
+//     constructor(){
+//         this.children = {}
+//         this.isEndofWord = false
+//     }
+// }
+
+// class Trie {
+//     constructor(){
+//         this.root = new TrieNode()
+//     }
+
+//     insert(word){
+//         let node = this.root
+//         for(let char of word){
+//             if(!node.children[char]){
+//                 node.children[char] = new TrieNode()
+//             }
+//             node = node.children[char]
+//         }
+//         node.isEndofWord = true
+//     }
+
+//     search(word){
+//         let node = this.root
+//         for(let char of word){
+//             if(!node.children[char]){
+//                 return false
+//             }
+//             node = node.children[char]
+//         }
+//         return node.isEndofWord
+//     }
+// }
+
+// const trie = new Trie()
+// trie.insert("hello")
+// trie.insert("hey")
+// trie.insert("hi")
+
+// console.log(trie.search("hey"))
+// console.log(trie.search("hello"))
+// console.log(trie.search("hello"))
+// console.log(trie.search("hell"))
+
+
+////////////!   Graph   ////////////!
+
+class Graph {
+    constructor(){
+        this.adjacencyList = {}
+    }
+    
+    addVertex(vertex){
+        if(!this.adjacencyList[vertex]){
+            this.adjacencyList[vertex] = new Set()
+        }
     }
 
-    for(let i=length - 1 ; i>=0 ; i++){
-        [array[0], array[i]] = [array[i] , array[0]]
-        heapify(array , i , 0)
+    addEdge(vertex1 , vertex2){
+        if(!this.adjacencyList[vertex1]){
+            this.addVertex(vertex1)
+        }
+        if(!this.adjacencyList[vertex2]){
+            this.addVertex(vertex2)
+        }
+        this.adjacencyList[vertex1].add(vertex2)
+        this.adjacencyList[vertex2].add(vertex1)
     }
-    return array
+
+    removeEdge(vertex1 , vertex2){
+        this.adjacencyList[vertex1].delete(vertex2)
+        this.adjacencyList[vertex2].delete(vertex1)
+    }
+
+    removeVertex(vertex){
+        if(!this.adjacencyList[vertex]){
+            return
+        }
+        for(let adjacencyList of this.adjacencyList(vertex)){
+            this.removeEdge(vertex,adjacencyList)
+        }
+        delete this.adjacencyList[vertex]
+    }
+
+    hasEdge(vertex1 , vertex2){
+        return(
+            this.adjacencyList[vertex1].has(vertex2) &&
+            this.adjacencyList[vertex2].has(vertex1)
+        )
+    }
+
+    display(){
+        for(let vertex in this.adjacencyList){
+            console.log(vertex +"=> "+[...this.adjacencyList[vertex]])
+        }
+    }
 }
-function heapify(array , heapSize , rootIndex){
-    let largest = rootIndex
-    let leftChild = 2*rootIndex+1
-    let rightChild = 2*rootIndex+2
 
-    if(leftChild < heapSize && array[leftChild] > array[largest]){
-        largest = leftChild
-    }
+const graph = new Graph()
+graph.addVertex(1)
+graph.addVertex(2)
+graph.addVertex(3)
 
-    if(rightChild < heapSize && array[rightChild] > array[largest]){
-        largest = rightChild
-    }
+graph.addEdge(1 , 2)
+graph.addEdge(2 , 3)
 
-    if(largest !== rootIndex){
-        [array[rootIndex] , array[largest]] = [array[largest] , array[rootIndex]]
-        heapify(array , heapSize , largest)
-    }
-}
 
-const arr = [5, 47, 23, 6, 4, 8];      
-console.log(heapSort(arr));
+
+graph.display()

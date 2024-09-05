@@ -1,14 +1,19 @@
 ////////!  Heap Sort Function   ////////!
 
-function heapSort(array) { 
-    const length = array.length;
+function heapSort(array) {
+    let length = array.length;
 
+    // Build a max heap
     for (let i = Math.floor(length / 2) - 1; i >= 0; i--) {
         heapify(array, length, i);
     }
 
+    // Extract elements one by one from the heap
     for (let i = length - 1; i >= 0; i--) {
-        [array[0], array[i]] = [array[i], array[0]]; 
+        // Move current root to the end
+        [array[0], array[i]] = [array[i], array[0]];
+
+        // Call max heapify on the reduced heap
         heapify(array, i, 0);
     }
 
@@ -17,25 +22,31 @@ function heapSort(array) {
 
 function heapify(array, heapSize, rootIndex) {
     let largest = rootIndex;
-    const leftChild = 2 * rootIndex + 1;
-    const rightChild = 2 * rootIndex + 2;
+    let leftChild = 2 * rootIndex + 1;
+    let rightChild = 2 * rootIndex + 2;
 
+    // If left child is larger than root
     if (leftChild < heapSize && array[leftChild] > array[largest]) {
         largest = leftChild;
     }
 
+    // If right child is larger than largest so far
     if (rightChild < heapSize && array[rightChild] > array[largest]) {
         largest = rightChild;
     }
 
+    // If largest is not root
     if (largest !== rootIndex) {
         [array[rootIndex], array[largest]] = [array[largest], array[rootIndex]];
+
+        // Recursively heapify the affected sub-tree
         heapify(array, heapSize, largest);
     }
 }
 
-const arr = [5, 47, 23, 6, 4, 8];      
+const arr = [5, 47, 23, 6, 4, 8];
 console.log(heapSort(arr));
+
 
 
 
