@@ -198,7 +198,7 @@ class BinaryTree {
 }
 
 let Bt = new BinaryTree()
-Bt.arrayTo([1,5,8,4,3,4,59,56,4,5,3,88,50,43,5,3,4])    
+Bt.arrayTo([2,3,4,32,12,34,56,43,67,8,5,67])    
 Bt.levelOrderTraversal()
 let result = []
 Bt.inOrderTraversal(Bt.root,result)
@@ -206,9 +206,9 @@ console.log(result)
 Bt.preOrderTraversal(Bt.root)
 console.log(Bt.root)
 console.log(Bt.height(Bt.root))
+console.log('is value there',Bt.isValuethere(Bt.root,50))
 console.log('this is find:', Bt.findAspecificNodeHeight(Bt.root,1))
 console.log('this is finding depth',Bt.findAspecificNodeDepth(Bt.root,56,0))
-console.log('Is value there',Bt.isValuethere(Bt.root,50))
-console.log('findin parent node',Bt.findTheParentNode(Bt.root,4))
-console.log('find all leaf Nodes',Bt.findAllLeafNodes(Bt.root))
+console.log('find in parent node',Bt.findTheParentNode(Bt.root,4))
 console.log('find siblings',Bt.findSiblings(Bt.root,43))
+console.log('find all leaf Nodes',Bt.findAllLeafNodes(Bt.root))
