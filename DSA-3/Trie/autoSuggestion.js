@@ -2,7 +2,7 @@
 class Node{
     constructor(){
         this.child = {}
-        this.isEnd    = false
+        this.isEndOfWord    = false
     }
  }
 
@@ -19,7 +19,7 @@ class Node{
             }
             node = node.child[char]
         }
-        node.isEnd = true
+        node.isEndOfWord = true
     }
 
     search(word){
@@ -30,7 +30,7 @@ class Node{
             }
             node = node.child[char]
         }
-        return node.isEnd;
+        return node.isEndOfWord;
     }
 
     prefixSearch(word){
@@ -58,7 +58,7 @@ class Node{
 
     getWords(node,word){
         let result = []
-        if (node.isEnd) {
+        if (node.isEndOfWord) {
             result.push(word)
         }
         for(let char in node.child){
@@ -77,4 +77,4 @@ trie.insert("pappaya");
 trie.insert("chai")
 trie.insert("pineapple");
 
-console.log(trie.autoSuggest('p'));
+console.log(trie.prefixSearch('p'));

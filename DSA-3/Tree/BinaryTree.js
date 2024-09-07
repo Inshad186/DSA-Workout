@@ -1,9 +1,10 @@
 //////////////!   Binary-Tree   //////////////!
 
 class Node {
-    constructor(val) {
-         this.val= val,
-         this.left = this.right = null
+    constructor(value) {
+         this.value= value,
+         this.left = null
+         this.right = null
     }
 }
 
@@ -12,8 +13,8 @@ class BinaryTree {
         this.root = null
     }
 
-    LeverOrderinsert(val) {
-        let newNode = new Node(val)
+    levelOrderinsert(value) {
+        let newNode = new Node(value)
         if(this.root === null) {
             this.root = newNode
             return
@@ -38,9 +39,9 @@ class BinaryTree {
         } 
     }
 
-    arrayTo(arr) {
+    toArray(arr) {
         for( let el of arr) {
-            this.LeverOrderinsert(el)
+            this.levelOrderinsert(el)
         }
     }
 
@@ -49,7 +50,7 @@ class BinaryTree {
         let queue = [this.root]
         while(queue.length>0) {
             let node = queue.shift()
-            console.log(node.val)
+            console.log(node.value)
             if(node.left) {
                 queue.push(node.left)
             }
@@ -64,8 +65,8 @@ class BinaryTree {
     inOrderTraversal(root,result) {
         if(root === null) return    
         this.inOrderTraversal(root.left,result)
-        console.log(root.val)
-        result.push(root.val)
+        console.log(root.value)
+        result.push(root.value)
         this.inOrderTraversal(root.right,result)
     }
 
@@ -73,8 +74,8 @@ class BinaryTree {
         let result = []
         function preOrderTraversal(root) {
             if(root==null) return 
-            console.log(root.val)
-            result.push(root.val)
+            console.log(root.value)
+            result.push(root.value)
               preOrderTraversal(root.left)
               preOrderTraversal(root.right)
         }
@@ -86,7 +87,7 @@ class BinaryTree {
         if(root ===null) return 
         this.postOrderTraversal(root.left)
         this.postOrderTraversal(root.right)
-        console.log(root.val)
+        console.log(root.value)
     }
 
     height(root) {
@@ -96,16 +97,16 @@ class BinaryTree {
        return Math.max(left,right) +1
     }
 
-    findAspecificNode(root,val) {
-        if(root === null || root.val === val) return root
-        let leftresult = this.findAspecificNode(root.left,val)
+    findAspecificNode(root,value) {
+        if(root === null || root.value === value) return root
+        let leftresult = this.findAspecificNode(root.left,value)
         if(leftresult) return leftresult
-        let rightresult = this.findAspecificNode(root.right,val)
+        let rightresult = this.findAspecificNode(root.right,value)
         return rightresult
     }
 
-    findAspecificNodeHeight(root,val){
-        let node = this.findAspecificNode(root,val)
+    findAspecificNodeHeight(root,value){
+        let node = this.findAspecificNode(root,value)
         let height = this.height(node)
         return height
     }
@@ -113,7 +114,7 @@ class BinaryTree {
     findAspecificNodeDepth(node,target,depth){
         if(node=== null) return -1
         
-        if(node.val===target) {
+        if(node.value===target) {
             return depth 
         }
         let leftresult = this.findAspecificNodeDepth(node.left,target,depth+1)
@@ -123,25 +124,25 @@ class BinaryTree {
         return rightresult
     }
 
-    isValuethere(node,val) {
+    isValuethere(node,value) {
         if(node === null) return false
-        if(node.val === val) return true
+        if(node.value === value) return true
 
-        let leftresult = this.isValuethere(node.left,val)
+        let leftresult = this.isValuethere(node.left,value)
         if(leftresult!==false) return leftresult
-        let rightresult = this.isValuethere(node.right,val)
+        let rightresult = this.isValuethere(node.right,value)
         return rightresult
     }
 
     findTheParentNode(node,target,parent=null){
         if(node === null) return null
          
-        if(node.val === target) return parent
+        if(node.value === target) return parent
 
-        let leftresult = this.findTheParentNode(node.left,target,parent=node.val)
+        let leftresult = this.findTheParentNode(node.left,target,parent=node.value)
         if(leftresult !== null) return leftresult
 
-        let rightresult = this.findTheParentNode(node.right,target,parent=node.val)
+        let rightresult = this.findTheParentNode(node.right,target,parent=node.value)
         return rightresult
     }
 
@@ -165,14 +166,14 @@ class BinaryTree {
         return result
     }
 
-    findSiblings(root,val) {
+    findSiblings(root,value) {
         if(root === null ) return null
         let queue = [root]
         let siblings = []
 
         while(queue.length>0) {
           let node = queue.shift()
-          if(node.val === val) {
+          if(node.value === value) {
             if(node.left ) {
                 siblings.push(node.left)
             }
@@ -198,7 +199,7 @@ class BinaryTree {
 }
 
 let Bt = new BinaryTree()
-Bt.arrayTo([2,3,4,32,12,34,56,43,67,8,40,1,67])    
+Bt.toArray([2,3,4,32,12,34,56,43,67,8,40,1,67])    
 Bt.levelOrderTraversal()
 let result = []
 Bt.inOrderTraversal(Bt.root,result)
